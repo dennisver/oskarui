@@ -1,0 +1,6 @@
+docs/_site
+.sass-cache
+docs/.jekyll-metadata
+node_modules
+_site
+.publish
