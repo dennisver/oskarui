@@ -9,7 +9,6 @@ Buttons are generated based on color variables, defined in button.styl. Custom b
 {% capture code %}
 <a href="#" class="btn btn-primary">Button</a>
 <a href="#" class="btn btn-green">Button</a>
-<a href="#" class="btn btn-green btn-loading">Button</a>
 <a href="#" class="btn btn-font">Button</a>
 <a href="#" class="btn btn-line">Button</a>
 {% endcapture %}
