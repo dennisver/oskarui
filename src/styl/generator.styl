@@ -1,0 +1,11 @@
+unless $GENERATOR-CLASSES-ENABLED is false
+  generate-colors($COLORS)
+
+  generate-levels('pad', 'padding', $SPACES)
+  generate-sides('pad', 'padding', $SPACES)
+
+  generate-levels('mar', 'margin', $SPACES)
+  generate-sides('mar', 'margin', $SPACES)
+  
+  generate-levels('before', 'margin-top', $SPACES)
+  generate-levels('below', 'margin-bottom', $SPACES)

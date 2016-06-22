@@ -1,0 +1,60 @@
+/* Variables */
+$grid-namespace = 'grid'
+$grid-width = 900px
+$grid-columns = 12
+$grid-default-gutter = epp(3)
+$grid-gutters = {
+  'small': epp(1),
+  'medium': epp(2),
+  'large': epp(7)
+}
+
+/* Helpers */
+grid-generate-columns($breakpoint)
+  for $size in (1..$grid-columns)
+    &.{$breakpoint}-{$size}
+      flex none
+      width percentage($size/$grid-columns)
+
+/* Grid classes */
+.{$grid-namespace}
+  padding-left $grid-default-gutter
+  padding-right $grid-default-gutter
+  overflow hidden
+  
+  &.{$grid-namespace}-container
+    margin 0 auto
+    max-width $grid-width
+    
+  &:not(.grid-top-align) .row
+    align-items center
+    
+  mixin-grid-generate($grid-default-gutter)
+  
+  .row
+    display flex
+    flex-wrap wrap
+    
+  .row .col
+    flex 1
+    grid-generate-columns('xs')
+    
+    +extrasmall()
+      flex none
+      width 100%
+      
+    +small()
+      grid-generate-columns('sm')
+      
+      &.is-narrow
+        flex none
+    
+    +medium()
+      grid-generate-columns('md')
+      
+    +large()
+      grid-generate-columns('lg')
+      
+  for $class, $gutter in $grid-gutters
+    &.grid-gutter-{$class}
+      mixin-grid-generate($gutter)

@@ -1,0 +1,11 @@
+epp($level)
+  return $level * 8px
+
+-color($color, $shade = null)
+  if $shade
+    return $COLORS[$color][$shade]
+  else
+    if typeof($COLORS[$color]) is 'object'
+      return $COLORS[$color].default
+    else
+      return $COLORS[$color]

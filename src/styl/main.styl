@@ -1,5 +1,34 @@
-*
-  color blue
-  
+@require 'variables'
+@require 'helpers/*'
+
+@require 'base/reset'
+@require 'base/*'
+
+@require 'elements/*'
+@require 'components/*'
+
+@require 'generator'
+
 span
-  color green
+  // display block
+  // background-color #eee
+  
+.menu span
+  background-color transparent
+
+
+// TODO clean up
+.fixed
+  position fixed
+  height 100%
+  overflow auto
+  
+// TODO clean up
+.article
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  p:first-child
+    _margin-top '3'

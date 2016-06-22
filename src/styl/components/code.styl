@@ -1,0 +1,29 @@
+/* Variables */
+$code-namespace = 'code'
+$code-padding = '2'
+$code-margin-top = '3'
+$code-margin-bottom = '3'
+
+.{$code-namespace}
+  @extend .border-box
+  _margin-top $code-margin-top
+  _margin-bottom $code-margin-bottom
+  
+  .{$code-namespace}-preview
+    _padding $code-padding
+  
+  .{$code-namespace}-source
+    _padding $code-padding
+    _background-color 'subtle'
+
+  &:not(.{$code-namespace}-horizontal)
+    .{$code-namespace}-preview
+      border-bottom 1px solid -color('border')
+
+  &.{$code-namespace}-horizontal
+    display flex
+    .{$code-namespace}-source
+      border-left 1px solid -color('border')
+      flex 1
+  
+  

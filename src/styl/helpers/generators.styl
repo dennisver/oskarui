@@ -1,0 +1,28 @@
+class-pattern($prefix, $attributes, $name, $value)
+  .{$prefix}-{$name}
+    if length($attributes) > 1
+      for $attribute in $attributes
+        {$attribute} $value !important
+    else
+      {$attributes} $value !important
+
+generate-levels($prefix, $attributes, $levels)
+  for $name, $value in $levels
+    class-pattern($prefix, $attributes, $name, $value)
+
+generate-sides($prefix, $attributes, $levels)
+  $sides = (t top) (r right) (b bottom) (l left) (v (top bottom)) (h (left right))
+  for $side in $sides
+    $side-attributes = ()
+    $side-prefix = $prefix + '-' + $side[0]
+    for $attribute in $side[1]
+      push($side-attributes, $attributes + '-' + $attribute)
+    generate-levels($side-prefix, $side-attributes, $levels)
+
+generate-colors($colors)
+  // TODO generate shade classes
+  $attributes = (c color) (bg background-color)
+  for $name, $value in $colors
+    for $attribute in $attributes
+      $color = -color($name)
+      class-pattern($attribute[0], $attribute[1], $name, $color)

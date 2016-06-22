@@ -1,0 +1,92 @@
+$typography-line-height = 1.25
+
+$typography-paragraph-max-width = 650px
+
+$typography-margin-bottom = epp(2) // Equal to line-height if set to false
+$typography-top = false // Equal to line-height if set to false
+$typography-top-multiplier = 2 // Used if ...margin-top-default is set to false
+
+/* Helpers */
+typography-generator($selector, $size, $margin-top = $typography-top, $margin-bottom = $typography-margin-bottom, $line-height = $typography-line-height)
+  $line-height = epp(ceil($size * $line-height / 8))
+  $prefix = match('\.', $selector) ? null : '.'
+    
+  {$prefix}{$selector}-inline
+    font-size $size
+    line-height $line-height
+    {block}
+    
+  {$selector}
+    @extends {$prefix}{$selector}-inline
+    if $margin-bottom
+      margin-bottom $margin-bottom
+    else
+      margin-bottom $line-height
+      
+    if $margin-top
+      margin-top $margin-top
+    else
+      margin-top $line-height * $typography-top-multiplier
+      
+  if $prefix
+    .{$selector}
+      @extend {$selector}
+
+/* Heading classes */
+// TODO: font-weight variables
++typography-generator('h1', $FONT-SIZES.huge)
+  _color('font', 'dark')
+  font-weight 500
+
++typography-generator('h2', $FONT-SIZES.xlarge)
+  _color('font', 'dark')
+  font-weight 500
+  
++typography-generator('h3', $FONT-SIZES.large, false, epp(1))
+  _color('font', 'dark')
+  font-weight 500
+  
++typography-generator('h4', $FONT-SIZES.medium, false, epp(0))
+  _color('font', 'dark')
+  font-weight 500
+  
+/* Paragraph */
++typography-generator('p', $FONT-SIZES.medium, epp(0), epp(2))
+  max-width $typography-paragraph-max-width
+  color: $COLORS.font.default
+  
+typography-generator('.button-text', $FONT-SIZES.xlarge)
+  
+/* Modifiers */
+.small-meta
+  font-size: $FONT-SIZES.small !important
+
+.tiny-meta
+  font-size: $FONT-SIZES.tiny !important
+  
+.fwb
+  font-weight 500 !important
+  
+.fwl
+  font-weight 300 !important
+
+.fwi
+  font-style italic !important
+  
+.uppercase
+  text-transform uppercase !important
+
+.lowercase
+  text-transform lowercase !important
+
+.capitalize
+  text-transform capitalize !important
+  
+.alignc
+  text-align center !important
+
+.alignl
+  text-align left !important
+
+.alignr
+  text-align right !important

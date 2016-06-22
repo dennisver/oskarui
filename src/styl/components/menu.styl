@@ -1,0 +1,38 @@
+/* Variables */
+$menu-namespace = 'menu'
+
+/* Includes */
+menu-label()
+  _typography('h3')
+  
+menu-link()
+  _typography('p')
+  text-decoration none
+
+menu-link-hover()
+  _color('primary')
+
+menu-link-active()
+  _color('primary')
+  font-weight: 600
+
+/* Classes */
+.{$menu-namespace}
+  .menu-label
+    _margin-bottom('2')
+    &:not(:first-child)
+      _margin-top('3')
+
+  .menu-label span
+    menu-label()
+    
+  ul li
+    &:not(:last-child)
+      margin-bottom 0
+      
+  ul li a
+    menu-link()
+    &:hover
+      menu-link-hover()
+    &.active
+      menu-link-active()

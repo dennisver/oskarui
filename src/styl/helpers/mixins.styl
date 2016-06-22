@@ -1,0 +1,80 @@
+_typography($tag, $space = false)
+  $prefix = match('\.', $tag) ? null : '.'
+  if $space
+    @extend {$prefix}{$tag}
+  else
+    @extend {$prefix}{$tag}-inline
+
+_color($color, $shade = null)
+  color: -color($color, $shade)
+  
+_background-color($color, $shade = null)
+  background-color: -color($color, $shade)
+  
+_border-radius($size)
+  border-radius: $BORDER-RADIUS[$size]
+  
+_padding($space)
+  padding: $SPACES[$space]
+
+_padding-top($space)
+  padding-top: $SPACES[$space]
+
+_padding-right($space)
+  padding-right: $SPACES[$space]
+
+_padding-bottom($space)
+  padding-bottom: $SPACES[$space]
+
+_padding-left($space)
+  padding-left: $SPACES[$space]
+  
+_padding-horizontal($space)
+  _padding-left $space
+  _padding-right $space
+  
+_padding-vertical($space)
+  _padding-top $space
+  _padding-bottom $space
+
+_margin($space)
+  margin: $SPACES[$space]
+
+_margin-top($space)
+  margin-top: $SPACES[$space]
+
+_margin-right($space)
+  margin-right: $SPACES[$space]
+
+_margin-bottom($space)
+  margin-bottom: $SPACES[$space]
+
+_margin-left($space)
+  margin-left: $SPACES[$space]
+  
+_margin-horizontal($space)
+  _margin-left $space
+  _margin-right $space
+  
+_margin-vertical($space)
+  _margin-top $space
+  _margin-bottom $space
+
+mixin-center($width)
+  position absolute
+  left 50%
+  top @left
+  margin-left: $width * -(1/2)
+  margin-top @margin-left
+  
+mixin-grid-generate($gutter)
+  .row
+    margin $gutter * -0.5
+    &:not(:last-child)
+      margin-bottom $gutter * 0.5
+  .row .col
+    padding $gutter * 0.5
+    
+mixin-extend-loader($color)
+  border: 2px solid $color
+  @extends .loader

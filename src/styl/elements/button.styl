@@ -1,0 +1,143 @@
+/* Variables */
+$button-namespace = 'btn'
+
+$button-colors = 'primary' 'green' 'font'
+
+$button-text-light = #fff // TODO use variable
+$button-text-dark = #000 // TODO use variable
+
+$button-group-space = epp(2)
+
+/* Includes */
+button-typography()
+  font-family: $FONT-FAMILIES.secondary
+  font-weight 600
+  font-size 11px
+  letter-spacing 2px
+  text-transform uppercase
+  text-decoration none
+  text-align center
+
+button-small()
+  border-radius: $BORDER-RADIUS.tiny
+  padding epp(1) epp(2)
+  
+button-medium()
+  border-radius: $BORDER-RADIUS.small
+  padding epp(1.5) epp(3.5)
+
+button-large()
+  border-radius: $BORDER-RADIUS.small
+  padding epp(3) epp(6)
+
+button-custom-colors()
+  &.{$button-namespace}-line
+    button-generate($color: transparent, $border: -color('border'), $text: -color('dark'), false)
+    &:hover
+      button-generate($border: -color('border', 'dark'))
+
+/* Helpers */
+// TODO: Better luminance algorithm
+button-text-color($color)
+  if contrast($color, $button-text-light).ratio > 1.8
+    $button-text-light
+  else
+    $button-text-dark      
+
+button-generate($color = null, $border = null, $text = null, $border-width = null, $loader = null)
+  $border-width = $border-width ? $border-width : 1px
+  box-shadow: inset 0 0 0 $border-width $border if $border
+  if $color
+    color ($text ? $text : button-text-color($color))
+    background-color $color
+    &:after
+      mixin-extend-loader($loader ? $loader : @color)
+
+/* Button class */
+.{$button-namespace}
+  button-typography()
+  line-height epp(ceil(@font-size / 8))
+  white-space nowrap
+  box-shadow: inset 0 0 0 1px transparent
+  button-generate($COLORS.primary)
+  button-medium()
+  &:hover
+    button-generate(darken($COLORS.primary, 5))
+    transition 0.3s
+  
+  // Colors
+  for $color in $button-colors
+    $tmp-color = -color($color)
+    &.{$button-namespace}-{$color}
+      button-generate($tmp-color)
+      &:hover
+        button-generate(darken($tmp-color, 5))
+
+  button-custom-colors()
+      
+  // Sizes
+  &.{$button-namespace}-small
+    button-small()
+    
+  &.{$button-namespace}-medium
+    button-medium()
+    
+  &.{$button-namespace}-large
+    button-large()
+    
+  // States
+  &.{$button-namespace}-loading
+    position relative
+    color transparent
+    pointer-events none
+    opacity 0.8
+    &:after
+      content ""
+      mixin-center(16px)
+    
+  &.{$button-namespace}-disabled
+    pointer-events none
+    opacity 0.5
+
+  // Responsive
+  +extrasmall()
+    display block
+    
+  +small()
+    display inline-block
+
+/* Button bar */
+.{$button-namespace}-bar
+  .{$button-namespace}
+    width 100%
+  .{$button-namespace}:not(:last-child)
+    margin-bottom $button-group-space
+  
+  +small()
+    display inline-block
+    &:not(:last-child)
+      margin-right $button-group-space
+    
+    .{$button-namespace}
+      width auto
+      &:not(:last-child)
+        margin-right $button-group-space
+        margin-bottom 0
+
+/* Button groups */      
+.{$button-namespace}-bar .{$button-namespace}-group  
+  .{$button-namespace}
+    margin-right 0
+    &:first-child
+      border-top-right-radius 0
+      border-bottom-right-radius 0
+      
+    &:last-child
+      border-top-left-radius 0
+      border-bottom-left-radius 0
+      
+    &:not(:last-child)
+      margin-right -1px
+    
+  +small()
+    display inline-block
