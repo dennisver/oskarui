@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Oskar UI</title>
+  <meta name="description" content="Front-end CSS framework written in Stylus
+">
+
+  <link rel="stylesheet" href="/oskarui/css/oskar.css">
+  <link rel="stylesheet" href="/oskarui/css/syntax.css">
+</head>
+
+
+  <body>
+
+    
+
+    <div class="grid grid-container grid-top-align">
+      <div class="row">
+        <div class="col xs-12 md-3">
+          <div class="menu pad-t-3">
+  <div class="menu-label">
+    <span>General</span>
+  </div>
+  <ul>
+    <li><a href="#"><span>Getting started</span></a></li>
+    <li><a href="#"><span>General</span></a></li>
+    <li><a href="#"><span>Extend</span></a></li>
+    <li><a href="#"><span>Utilities</span></a></li>
+    <li><a href="#"><span>Z-index</span></a></li>
+    <li><a href="#"><span>Reset</span></a></li>
+    <li><a href="#"><span>Generators</span></a></li>
+    <li><a href="#"><span>Variables</span></a></li>
+  </ul>
+  <div class="menu-label">
+    <span>Elements</span>
+  </div>
+  <ul>
+    <li><a href="buttons" class="active"><span>Buttons</span></a></li>
+    <li><a href="tabs"><span>Tabs</span></a></li>
+    <li><a href="#"><span>Typography</span></a></li>
+    <li><a href="#"><span>Grid</span></a></li>
+    <li><a href="#"><span>Styles</span></a></li>
+    <li><a href="#"><span>Forms</span></a></li>
+    <li><a href="#"><span>Tables</span></a></li>
+  </ul>
+  <div class="menu-label">
+    <span>Components</span>
+  </div>
+  <ul>
+    <li><a href="#"><span>Menu</span></a></li>
+    <li><a href="#"><span>Code</span></a></li>
+    <li><a href="#"><span>Modal</span></a></li>
+    <li><a href="#"><span>Header</span></a></li>
+    <li><a href="#"><span>Footer</span></a></li>
+  </ul>
+</div>
+
+        </div>
+        <div class="col article">
+          <h1>Buttons</h1>
+<p>Buttons are generated based on color variables, defined in button.styl. Custom buttons can be made by modifying the button-custom placeholder.</p>
+
+<h2>Colors</h2>
+
+<div class="code ">
+  <div class="code-preview ">
+    
+<a href="#" class="btn btn-primary">Button</a>
+<a href="#" class="btn btn-green">Button</a>
+<a href="#" class="btn btn-green btn-loading">Button</a>
+<a href="#" class="btn btn-font">Button</a>
+<a href="#" class="btn btn-line">Button</a>
+
+  </div>
+  <div class="code-source ">
+    
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-green"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-green btn-loading"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-font"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-line"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>Button colors are specified at the top of the button.styl file. These are references to the $COLORS variable. If you want to add a new color, first add it to the global $COLORS variable so it’s accessible throughout the rest of the code.</p>
+
+<h3>Custom buttons</h3>
+<p>Custom buttons can be created within the <code class="highlighter-rouge">button-custom-colors()</code> mixin. If possible, you should use the <code class="highlighter-rouge">button-generate-color()</code> mixin to define the colors.</p>
+
+<p class="dim">Use of borders on buttons is not recommended as they change the element’s width/height. Instead use box-shadow.</p>
+
+<h2>States</h2>
+
+<div class="code ">
+  <div class="code-preview ">
+    
+<a href="#" class="btn btn-primary btn-loading">Button</a>
+<a href="#" class="btn btn-primary btn-disabled ">Button</a> <!-- disabled -->
+<a href="#" class="btn btn-green btn-loading">Button</a>
+<a href="#" class="btn btn-font btn-loading">Button</a>
+<a href="#" class="btn btn-line btn-loading">Button</a>
+
+  </div>
+  <div class="code-source ">
+    
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-primary btn-loading"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-primary btn-disabled "</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span> <span class="c">&lt;!-- disabled --&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-green btn-loading"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-font btn-loading"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-line btn-loading"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+
+  </div>
+</div>
+
+<p>Buttons can have a <code class="highlighter-rouge">btn-loading</code> or <code class="highlighter-rouge">btn-disabled</code> state. You should add/remove these state-classes by using JS.
+Loading buttons also have a slighty lower opacity. Disabled buttons have only half of their opacity.</p>
+
+<h2>Sizes</h2>
+
+<div class="code ">
+  <div class="code-preview ">
+    
+<a href="#" class="btn btn-small">Button</a>
+<a href="#" class="btn btn-medium">Button</a>
+<a href="#" class="btn btn-large">Button</a>
+
+  </div>
+  <div class="code-source ">
+    
+<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-small"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-medium"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"btn btn-large"</span><span class="nt">&gt;</span>Button<span class="nt">&lt;/a&gt;</span></code></pre></figure>
+
+  </div>
+</div>
+
+
+        </div>
+      </div>
+    </div>
+
+    
+
+  </body>
+
+</html>
